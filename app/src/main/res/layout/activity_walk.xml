@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="adapter"
+            type="com.example.sberbanktest.presentation.adapter.RouteAdapter" />
+        <variable
+            name="data"
+            type="com.example.sberbanktest.data.entities.Data" />
+
+        <variable
+            name="handler"
+            type="com.example.sberbanktest.utils.MyHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        tools:context=".presentation.view.WalkActivity">
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@{data.title}"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/description_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@{data.description}"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_txt"
+            app:layout_constraintBottom_toTopOf="@id/type_txt"/>
+
+        <TextView
+            android:id="@+id/type_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#526843"
+            android:text="Тип"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/description_txt"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/line1"
+            />
+
+        <ImageView
+            android:id="@+id/type_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/pedestrian"
+            android:layout_marginVertical="5dp"
+            app:layout_constraintTop_toBottomOf="@id/type_txt"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/line1"
+            />
+        <TextView
+            android:id="@+id/type_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="Пешеходная"
+            app:layout_constraintTop_toBottomOf="@id/type_img"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/line1"
+            />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#526843"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/type_name"
+            app:layout_constraintRight_toLeftOf="@id/project_name"
+            app:layout_constraintTop_toBottomOf="@id/description_txt"
+            app:layout_constraintBottom_toTopOf="@id/author_title"/>
+
+        <TextView
+            android:id="@+id/project_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#526843"
+            android:text="Проект"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/description_txt"
+            app:layout_constraintLeft_toRightOf="@id/line1"
+            app:layout_constraintRight_toLeftOf="@id/line2"
+            />
+
+        <ImageView
+            android:id="@+id/project_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/museum"
+            android:layout_marginVertical="5dp"
+            app:layout_constraintTop_toBottomOf="@id/project_txt"
+            app:layout_constraintLeft_toRightOf="@id/line1"
+            app:layout_constraintRight_toLeftOf="@id/line2"
+            />
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="Музей Москвы"
+            app:layout_constraintTop_toBottomOf="@id/project_img"
+            app:layout_constraintLeft_toRightOf="@id/line1"
+            app:layout_constraintRight_toLeftOf="@id/line2"/>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#526843"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toRightOf="@id/project_name"
+            app:layout_constraintRight_toLeftOf="@id/time_txt"
+            app:layout_constraintTop_toBottomOf="@id/description_txt"
+            app:layout_constraintBottom_toTopOf="@id/author_title"/>
+
+        <TextView
+            android:id="@+id/time_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#526843"
+            android:text="Время в пути"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/description_txt"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/line2"
+            />
+
+        <TextView
+            android:id="@+id/timeInMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(data.duration)}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginVertical="5dp"
+            app:layout_constraintTop_toBottomOf="@id/time_txt"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/line2"/>
+        <TextView
+            android:id="@+id/time_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="мин"
+            app:layout_constraintTop_toBottomOf="@id/timeInMin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/line2"/>
+
+
+        <TextView
+            android:id="@+id/author_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторы"
+            android:textColor="#526843"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/type_name"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/author_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            app:roundedCornerRadius="30dp"
+            app:setImageUrl="@{data.authors[0].img}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author_title"/>
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{data.authors[0].title}"
+            app:layout_constraintLeft_toRightOf="@id/author_img"
+            app:layout_constraintTop_toBottomOf="@id/author_title"/>
+
+        <TextView
+            android:id="@+id/author_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.authors[0].description}"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toRightOf="@+id/author_img"
+            app:layout_constraintTop_toBottomOf="@+id/author_name"/>
+
+        <TextView
+            android:id="@+id/route_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Маршруты"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/author_description"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/route_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:setAdapter="@{adapter}"
+            app:layout_constraintTop_toBottomOf="@id/route_txt"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Начать прогулку"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_style"
+            android:onClick="@{(view) -> handler.onClickToStart(data.routes, context)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
